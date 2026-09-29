@@ -14,13 +14,15 @@
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "sass": "^1.105.0",
+    "serve": "^14.2.6",
     "web-vitals": "^6.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:js": "eslint src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": [

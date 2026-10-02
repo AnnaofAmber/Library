@@ -8,6 +8,7 @@ export const BookItem = ({
   author,
   year,
   genre,
+  type,
   cover,
   image,
   showModalImage,
@@ -27,29 +28,38 @@ export const BookItem = ({
   dateOfReading,
   dateOfBuying,
 }) => {
-
-  
   //   const dispatch = useDispatch();
   //   const onDelete = () => dispatch(deleteBook(id));
 
   /**
   |============================
-  | 
+  | Spine
   |============================
 */
-  const width = Number(pages) / 9;
+  let width;
+  let height;
 
-  let height = Number(pages) / 3;
+  if (type === "комікс") {
+    width = 50;
+    height = 320;
 
-  if (height < 200) {
-    height = 200 + width;
+    // if (height < 200) {
+    //   height = 200 + width;
+    // }
+    // if (height > 300) {
+    //   height = 300;
+    // }
+  } else {
+    width = Number(pages) / 9;
+    height = Number(pages) / 3;
+
+    if (height < 200) {
+      height = 200 + width;
+    }
+    if (height > 300) {
+      height = 300;
+    }
   }
-  if (height > 300) {
-    height = 300;
-  }
-
-  // const fontSizeTitle = 14.5+width/12
-  // const fontSize = height/22
 
   /**
   |============================

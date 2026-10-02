@@ -6,13 +6,18 @@ import { Modal } from "../Modal/Modal";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-/**
+export const Layout = () => {
+  const books = useSelector((state) => state.books);
+  const comics = useSelector((state) => state.comics);
+  const filter = useSelector((state) => state.filter);
+  const isRead = useSelector((state) => state.isRead);
+
+  /**
   |============================
   | все для Modal
   |============================
 */
 
-export const Layout = () => {
   const [isModal, setIsModal] = useState(false);
   const [name, setModalName] = useState({});
   const [author, setModalAuthor] = useState({});
@@ -32,19 +37,34 @@ export const Layout = () => {
   const [language, setLanguage] = useState({});
   const [dateOfReading, setDateOfReading] = useState({});
   const [dateOfBuying, setDateOfBuying] = useState({});
- 
 
-
-
-
-  const showModalImage = (imageModal, name, author, genre, year, publishYear, publisher, pages, read, series, seriesName,volumes, part, rating,description, language, dateOfReading, dateOfBuying) => {
+  const showModalImage = (
+    imageModal,
+    name,
+    author,
+    genre,
+    year,
+    publishYear,
+    publisher,
+    pages,
+    read,
+    series,
+    seriesName,
+    volumes,
+    part,
+    rating,
+    description,
+    language,
+    dateOfReading,
+    dateOfBuying,
+  ) => {
     setIsModal(true);
     setModalName(name);
     setModalAuthor(author);
     setModalYear(year);
     setPublishYear(publishYear);
     setModalGenre(genre);
-    setPublisher(publisher)
+    setPublisher(publisher);
     setModalImage(imageModal);
     setPages(pages);
     setRead(read);
@@ -56,12 +76,10 @@ export const Layout = () => {
     setDescription(description);
     setLanguage(language);
     setDateOfReading(dateOfReading);
-    setDateOfBuying(dateOfBuying)
+    setDateOfBuying(dateOfBuying);
 
-      console.log(dateOfReading);
+    console.log(dateOfReading);
   };
-
-
 
   const closeModal = () => {
     setModalImage({});
@@ -70,34 +88,63 @@ export const Layout = () => {
 
   /**
     |============================
-    | для фільтра прочитаного
+    | для фільтра прочитаного | BOOKS
     |============================
   */
 
-const onFilteredBooks = (books, filter, isRead) => {
-  if (filter) {
-    return books.filter(
-      (book) =>
-        book.name.toLowerCase().includes(filter.toLowerCase()) ||
-        book.author.toLowerCase().includes(filter.toLowerCase()) ||
-        book.genre.toLowerCase().includes(filter.toLowerCase()),
-    );
-  }
+  const onFilteredBooks = (books, filter, isRead) => {
+    if (filter) {
+      return books.filter(
+        (book) =>
+          book.name.toLowerCase().includes(filter.toLowerCase()) ||
+          book.author.toLowerCase().includes(filter.toLowerCase()) ||
+          book.genre.toLowerCase().includes(filter.toLowerCase()),
+      );
+    }
 
-  if (isRead === "read") {
-    return books.filter((book) => book.read === true);
-  } else if (isRead === "not") {
-    return books.filter((book) => book.read === false);
-  } else {
-    return books;
-  }
-};
-
-  const books = useSelector((state) => state.books);
-  const filter = useSelector((state) => state.filter);
-  const isRead = useSelector((state) => state.isRead);
+    if (isRead === "read") {
+      return books.filter((book) => book.read === true);
+    } else if (isRead === "not") {
+      return books.filter((book) => book.read === false);
+    } else {
+      return books;
+    }
+  };
 
   const filteredBooks = onFilteredBooks(books, filter, isRead);
+
+  /**
+    |============================
+    | COMICS
+    |============================
+  */
+
+  const onFilteredComics = (comics, filter, isRead) => {
+    if (filter) {
+      return comics.filter(
+        (comic) =>
+          comic.name.toLowerCase().includes(filter.toLowerCase()) ||
+          comic.author.toLowerCase().includes(filter.toLowerCase()) ||
+          comic.genre.toLowerCase().includes(filter.toLowerCase()),
+      );
+    }
+
+    if (isRead === "read") {
+      return comics.filter((comic) => comic.read === true);
+    } else if (isRead === "not") {
+      return comics.filter((book) => book.read === false);
+    } else {
+      return comics;
+    }
+  };
+
+  const filteredComics = onFilteredComics(comics, filter, isRead);
+
+  /**
+    |============================
+    | counter
+    |============================
+  */
 
   let i = 0;
   const counter = (filteredBooks) => {
@@ -106,9 +153,6 @@ const onFilteredBooks = (books, filter, isRead) => {
     });
   };
   counter(filteredBooks);
-  
-  
-  
 
   /**
     |============================
@@ -126,6 +170,8 @@ const onFilteredBooks = (books, filter, isRead) => {
           <div className={scss.counter}>{i}</div>
           <BookList
             filteredBooks={filteredBooks}
+            filteredComics={filteredComics}
+            // showAll={all}
             showModalImage={showModalImage}
           />
         </main>

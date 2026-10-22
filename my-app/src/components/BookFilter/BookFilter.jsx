@@ -10,10 +10,9 @@ export const BookFilter = () => {
   const dispatch = useDispatch();
   const name = useSelector((state) => state.name);
   const filter = useSelector((state) => state.isRead);
+  const az = useSelector((state) => state.filter);
 
   const handleFilterChange = (event) => {
-    console.log(event);
-
     return dispatch(filterBooks(event.target.value));
   };
 
@@ -21,7 +20,9 @@ export const BookFilter = () => {
     return dispatch(readFilter(event.target.id));
   };
 
-  console.log(filter);
+  const handleFilterAZ = (event) => {
+    return dispatch(filterBooks(event.target.id));
+  };
 
   return (
     <div className={scss.container}>
@@ -38,6 +39,7 @@ export const BookFilter = () => {
         />
       </div>
       <ReadFilter
+        handleFilterAZ={handleFilterAZ}
         handleFilterChangeIsRead={handleFilterChangeIsRead}
         filter={filter}
       />

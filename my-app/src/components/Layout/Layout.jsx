@@ -93,13 +93,15 @@ export const Layout = () => {
   */
 
   const onFilteredBooks = (books, filter, isRead) => {
-    if (filter) {
+    if (filter !== "AZ") {
       return books.filter(
         (book) =>
           book.name.toLowerCase().includes(filter.toLowerCase()) ||
           book.author.toLowerCase().includes(filter.toLowerCase()) ||
           book.genre.toLowerCase().includes(filter.toLowerCase()),
       );
+    } else if (filter === "AZ") {
+      return books.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     if (isRead === "read") {
@@ -147,12 +149,11 @@ export const Layout = () => {
   */
 
   let i = 0;
-  const counter = (filteredBooks) => {
-    filteredBooks.map((book) => {
-      return (i = i + 1);
-    });
+  const counter = () => {
+    filteredBooks.map(() => (i = i + 1));
+    filteredComics.map(() => (i = i + 1));
   };
-  counter(filteredBooks);
+  counter();
 
   /**
     |============================

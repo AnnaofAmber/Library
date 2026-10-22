@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isRead:'read',
-  notRead:'not',
+  // isRead:'read',
+  // notRead:'not',
   all:'all'
 };
 

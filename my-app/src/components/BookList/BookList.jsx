@@ -4,6 +4,7 @@ import { BookItem } from "../BookItem/BookItem";
 export const BookList = ({ showModalImage, filteredBooks, filteredComics }) => {
   return (
     <div>
+      <h2>Books</h2>
       <ul className={scss.bookList}>
         {filteredBooks.map((book) => (
           <BookItem
@@ -34,6 +35,7 @@ export const BookList = ({ showModalImage, filteredBooks, filteredComics }) => {
           />
         ))}
       </ul>
+      <h2>Comics</h2>
       <ul className={scss.bookList}>
         {filteredComics.map((book) => (
           <BookItem

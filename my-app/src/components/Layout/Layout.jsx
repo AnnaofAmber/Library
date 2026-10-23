@@ -11,6 +11,7 @@ export const Layout = () => {
   const comics = useSelector((state) => state.comics);
   const filter = useSelector((state) => state.filter);
   const isRead = useSelector((state) => state.isRead);
+  const az = useSelector((state) => state.az);
 
   /**
   |============================
@@ -93,23 +94,49 @@ export const Layout = () => {
   */
 
   const onFilteredBooks = (books, filter, isRead) => {
-    if (filter !== "AZ") {
+    let sortedBooks = [];
+    books.map((book) => sortedBooks.push(book));
+
+    if (filter) {
       return books.filter(
         (book) =>
           book.name.toLowerCase().includes(filter.toLowerCase()) ||
           book.author.toLowerCase().includes(filter.toLowerCase()) ||
           book.genre.toLowerCase().includes(filter.toLowerCase()),
       );
-    } else if (filter === "AZ") {
-      return books.sort((a, b) => a.name.localeCompare(b.name));
     }
+    // if (az === "AZ") {
+    //   return books.sort((a, b) => a.name.localeCompare(b.name));
+    // } else if (az === "all") {
+    //   return books;
+    // }
 
     if (isRead === "read") {
-      return books.filter((book) => book.read === true);
+      if (az === "AZ") {
+        return books
+          .filter((book) => book.read === true)
+          .sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        return books.filter((book) => book.read === true);
+      }
     } else if (isRead === "not") {
-      return books.filter((book) => book.read === false);
-    } else {
-      return books;
+      if (az === "AZ") {
+        return books
+          .filter((book) => book.read === false)
+          .sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        return books.filter((book) => book.read === false);
+      }
+    }
+    // else {
+    //   return books;
+    // }
+    else if (isRead === "all") {
+      if (az === "AZ") {
+        return sortedBooks.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        return books;
+      }
     }
   };
 

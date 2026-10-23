@@ -30,7 +30,7 @@ export const ReadFilter = ({
         Непрочитані
       </button>
       <button
-        className={clsx(scss.btn, filter === "not" && scss.btnClsx)}
+        // className={clsx(scss.btn, filter === "not" && scss.btnClsx)}
         id="AZ"
         onClick={handleFilterAZ}
       >

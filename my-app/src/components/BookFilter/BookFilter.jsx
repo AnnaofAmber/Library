@@ -5,12 +5,13 @@ import { filterBooks } from "../../redux/filterBooksSlice";
 import { readFilter } from "../../redux/readFilterSlice";
 import clsx from "clsx";
 import { ReadFilter } from "../ReadFilter/ReadFilter";
+import { azFilter } from "../../redux/azFilterSlice";
 
 export const BookFilter = () => {
   const dispatch = useDispatch();
   const name = useSelector((state) => state.name);
   const filter = useSelector((state) => state.isRead);
-  const az = useSelector((state) => state.filter);
+  const az = useSelector((state) => state.az);
 
   const handleFilterChange = (event) => {
     return dispatch(filterBooks(event.target.value));
@@ -21,7 +22,11 @@ export const BookFilter = () => {
   };
 
   const handleFilterAZ = (event) => {
-    return dispatch(filterBooks(event.target.id));
+    if (az === "all") {
+      return dispatch(azFilter(event.target.id));
+    } else {
+      return dispatch(azFilter("all"));
+    }
   };
 
   return (

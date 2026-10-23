@@ -14,6 +14,7 @@ import storage from 'redux-persist/lib/storage';
 import { filterReducer } from './filterBooksSlice';
 import { readFilterReducer } from './readFilterSlice';
 import { comicsReducer } from './comiscSlice';
+import { azFilterReducer } from './azFilterSlice';
 
 const persistConfig = {
   key: 'root',
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   books: booksReducer,
   filter: filterReducer,
   isRead: readFilterReducer,
-  comics: comicsReducer
+  comics: comicsReducer,
+  az: azFilterReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

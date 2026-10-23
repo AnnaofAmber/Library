@@ -89,7 +89,7 @@ export const Layout = () => {
 
   /**
     |============================
-    | для фільтра прочитаного | BOOKS
+    | ФІЛЬТРИ | BOOKS
     |============================
   */
 
@@ -97,45 +97,56 @@ export const Layout = () => {
     let sortedBooks = [];
     books.map((book) => sortedBooks.push(book));
 
-    if (filter) {
-      return books.filter(
-        (book) =>
-          book.name.toLowerCase().includes(filter.toLowerCase()) ||
-          book.author.toLowerCase().includes(filter.toLowerCase()) ||
-          book.genre.toLowerCase().includes(filter.toLowerCase()),
-      );
-    }
-    // if (az === "AZ") {
-    //   return books.sort((a, b) => a.name.localeCompare(b.name));
-    // } else if (az === "all") {
-    //   return books;
-    // }
-
     if (isRead === "read") {
       if (az === "AZ") {
         return books
           .filter((book) => book.read === true)
           .sort((a, b) => a.name.localeCompare(b.name));
-      } else {
+      } else if (az === "all" && !filter) {
         return books.filter((book) => book.read === true);
+      }
+      if (filter) {
+        return books
+          .filter((book) => book.read === true)
+          .filter(
+            (book) =>
+              book.name.toLowerCase().includes(filter.toLowerCase()) ||
+              book.author.toLowerCase().includes(filter.toLowerCase()) ||
+              book.genre.toLowerCase().includes(filter.toLowerCase()),
+          );
       }
     } else if (isRead === "not") {
       if (az === "AZ") {
         return books
           .filter((book) => book.read === false)
           .sort((a, b) => a.name.localeCompare(b.name));
-      } else {
+      } else if (az === "all" && !filter) {
         return books.filter((book) => book.read === false);
       }
-    }
-    // else {
-    //   return books;
-    // }
-    else if (isRead === "all") {
+      if (filter) {
+        return books
+          .filter((book) => book.read === false)
+          .filter(
+            (book) =>
+              book.name.toLowerCase().includes(filter.toLowerCase()) ||
+              book.author.toLowerCase().includes(filter.toLowerCase()) ||
+              book.genre.toLowerCase().includes(filter.toLowerCase()),
+          );
+      }
+    } else if (isRead === "all") {
       if (az === "AZ") {
         return sortedBooks.sort((a, b) => a.name.localeCompare(b.name));
-      } else {
+      } else if (az === "all" && !filter) {
         return books;
+      }
+
+      if (filter) {
+        return books.filter(
+          (book) =>
+            book.name.toLowerCase().includes(filter.toLowerCase()) ||
+            book.author.toLowerCase().includes(filter.toLowerCase()) ||
+            book.genre.toLowerCase().includes(filter.toLowerCase()),
+        );
       }
     }
   };
@@ -148,22 +159,79 @@ export const Layout = () => {
     |============================
   */
 
+  // const onFilteredComics = (comics, filter, isRead) => {
+  //   if (filter) {
+  //     return comics.filter(
+  //       (comic) =>
+  //         comic.name.toLowerCase().includes(filter.toLowerCase()) ||
+  //         comic.author.toLowerCase().includes(filter.toLowerCase()) ||
+  //         comic.genre.toLowerCase().includes(filter.toLowerCase()),
+  //     );
+  //   }
+
+  //   if (isRead === "read") {
+  //     return comics.filter((comic) => comic.read === true);
+  //   } else if (isRead === "not") {
+  //     return comics.filter((book) => book.read === false);
+  //   } else {
+  //     return comics;
+  //   }
+  // };
   const onFilteredComics = (comics, filter, isRead) => {
-    if (filter) {
-      return comics.filter(
-        (comic) =>
-          comic.name.toLowerCase().includes(filter.toLowerCase()) ||
-          comic.author.toLowerCase().includes(filter.toLowerCase()) ||
-          comic.genre.toLowerCase().includes(filter.toLowerCase()),
-      );
-    }
+    let sortedComics = [];
+    comics.map((book) => sortedComics.push(book));
 
     if (isRead === "read") {
-      return comics.filter((comic) => comic.read === true);
+      if (az === "AZ") {
+        return comics
+          .filter((book) => book.read === true)
+          .sort((a, b) => a.name.localeCompare(b.name));
+      } else if (az === "all" && !filter) {
+        return comics.filter((book) => book.read === true);
+      }
+      if (filter) {
+        return comics
+          .filter((book) => book.read === true)
+          .filter(
+            (book) =>
+              book.name.toLowerCase().includes(filter.toLowerCase()) ||
+              book.author.toLowerCase().includes(filter.toLowerCase()) ||
+              book.genre.toLowerCase().includes(filter.toLowerCase()),
+          );
+      }
     } else if (isRead === "not") {
-      return comics.filter((book) => book.read === false);
-    } else {
-      return comics;
+      if (az === "AZ") {
+        return comics
+          .filter((book) => book.read === false)
+          .sort((a, b) => a.name.localeCompare(b.name));
+      } else if (az === "all" && !filter) {
+        return comics.filter((book) => book.read === false);
+      }
+      if (filter) {
+        return comics
+          .filter((book) => book.read === false)
+          .filter(
+            (book) =>
+              book.name.toLowerCase().includes(filter.toLowerCase()) ||
+              book.author.toLowerCase().includes(filter.toLowerCase()) ||
+              book.genre.toLowerCase().includes(filter.toLowerCase()),
+          );
+      }
+    } else if (isRead === "all") {
+      if (az === "AZ") {
+        return sortedComics.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (az === "all" && !filter) {
+        return comics;
+      }
+
+      if (filter) {
+        return comics.filter(
+          (book) =>
+            book.name.toLowerCase().includes(filter.toLowerCase()) ||
+            book.author.toLowerCase().includes(filter.toLowerCase()) ||
+            book.genre.toLowerCase().includes(filter.toLowerCase()),
+        );
+      }
     }
   };
 

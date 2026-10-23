@@ -5,6 +5,7 @@ export const ReadFilter = ({
   handleFilterChangeIsRead,
   handleFilterAZ,
   filter,
+  az,
 }) => {
   return (
     <div className={scss.btnContaier}>

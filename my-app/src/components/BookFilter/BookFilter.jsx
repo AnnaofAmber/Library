@@ -3,7 +3,6 @@ import scss from "./BookFilter.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { filterBooks } from "../../redux/filterBooksSlice";
 import { readFilter } from "../../redux/readFilterSlice";
-import clsx from "clsx";
 import { ReadFilter } from "../ReadFilter/ReadFilter";
 import { azFilter } from "../../redux/azFilterSlice";
 
@@ -13,13 +12,31 @@ export const BookFilter = () => {
   const filter = useSelector((state) => state.isRead);
   const az = useSelector((state) => state.az);
 
+  /**
+    |============================
+    | фільтр по пошуку
+    |============================
+  */
+
   const handleFilterChange = (event) => {
     return dispatch(filterBooks(event.target.value));
   };
 
+  /**
+    |============================
+    | фільтер прочитаного
+    |============================
+  */
+
   const handleFilterChangeIsRead = (event) => {
+    dispatch(azFilter("all"));
     return dispatch(readFilter(event.target.id));
   };
+  /**
+  |============================
+  | фільтр по алфавіту
+  |============================
+*/
 
   const handleFilterAZ = (event) => {
     if (az === "all") {
@@ -28,6 +45,12 @@ export const BookFilter = () => {
       return dispatch(azFilter("all"));
     }
   };
+
+  /**
+    |============================
+    | RETURN
+    |============================
+  */
 
   return (
     <div className={scss.container}>
@@ -47,13 +70,8 @@ export const BookFilter = () => {
         handleFilterAZ={handleFilterAZ}
         handleFilterChangeIsRead={handleFilterChangeIsRead}
         filter={filter}
+        az={az}
       />
-      {/* <div className={scss.btnContaier}>
-      <button className={clsx(scss.btn, filter ==='all' && scss.btnClsx )} id='all' onClick={handleFilterChangeIsRead}>Всі</button>
-      <button className={clsx(scss.btn, filter === 'read' && scss.btnClsx )} id='read' onClick={handleFilterChangeIsRead}>Прочитані</button>
-      <button className={clsx(scss.btn, filter ==='not' && scss.btnClsx )} id='not' onClick={handleFilterChangeIsRead}>Непрочитані</button>
-
-    </div> */}
     </div>
   );
 };

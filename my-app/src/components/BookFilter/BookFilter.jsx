@@ -29,7 +29,9 @@ export const BookFilter = () => {
   */
 
   const handleFilterChangeIsRead = (event) => {
-    dispatch(azFilter("all"));
+    if (!filter) {
+      dispatch(azFilter("all"));
+    }
     return dispatch(readFilter(event.target.id));
   };
   /**
@@ -42,6 +44,7 @@ export const BookFilter = () => {
     if (az === "all") {
       return dispatch(azFilter(event.target.id));
     } else {
+      event.target.blur();
       return dispatch(azFilter("all"));
     }
   };

@@ -1,6 +1,7 @@
 .btnContaier{
 display: flex;
 margin-top: 20px;
+gap: 15px;
 }
 
 .btn{
@@ -19,11 +20,12 @@ color: rgb(100, 85, 80);
     color: rgb(223, 196, 187);
   background-color: rgba(100, 85, 80, 0.073);
 
-}}
-
-.btn:not(:first-child){
-margin-left: 15px;
 }
+
+
+}
+
+
 
 .btn:hover{
   cursor: pointer;
@@ -32,7 +34,8 @@ margin-left: 15px;
 }
 
 .btn:focus{
-
 color: rgb(223, 196, 187);
   background-color: rgba(100, 85, 80, 0.073);
 }
+
+

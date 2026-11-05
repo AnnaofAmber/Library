@@ -40,16 +40,13 @@ export const BookItem = ({
     width = Number(pages) / 9;
     height = Number(pages) / 3;
 
-    if (height < 200) {
+    if (height <= 200) {
       height = 200 + width;
     }
     if (height > 300) {
       height = 300;
     }
   }
-
-  console.log(color);
-
   /**
   |============================
   | RETURN

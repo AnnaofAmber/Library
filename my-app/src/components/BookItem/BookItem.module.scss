@@ -1,41 +1,46 @@
-.bookItem{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    
-   
+.bookItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.bookSpine{
+.bookItem:hover{
+  cursor: pointer;
+}
+
+.bookSpine {
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-      text-orientation: sideways-right;
-  writing-mode:sideways-lr;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-orientation: sideways-right;
+  writing-mode: sideways-lr;
   padding: 20px;
-    width: 50px;
-    height: 200px;
-    margin-right: 5px;
+  width: 50px;
+  height: 200px;
   background-color: aliceblue;
   border-radius: 2px;
-       container-type: inline-size
+  container-type: inline-size;
+
+  border-right: 1px solid rgba(37, 20, 20, 0.634);
 }
 
+.bookSpine:hover{
+  transform: perspective(500px) translateZ(20px);
+}
 
-.shelf{
+.shelf {
   background-color: rgb(70, 42, 31);
   height: 20px;
   width: 110%;
   margin-bottom: 20px;
 }
 
-.name{
+.name {
   font-size: 9cqi;
 }
 
-.author{
+.author {
   font-size: 6cqi;
 }

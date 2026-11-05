@@ -1,8 +1,5 @@
 import scss from "./BookItem.module.scss";
 
-// import { useDispatch } from "react-redux";
-// import { deleteBook } from "../../redux/booksSlice";
-
 export const BookItem = ({
   name,
   author,
@@ -28,9 +25,6 @@ export const BookItem = ({
   dateOfReading,
   dateOfBuying,
 }) => {
-  //   const dispatch = useDispatch();
-  //   const onDelete = () => dispatch(deleteBook(id));
-
   /**
   |============================
   | Spine
@@ -42,13 +36,6 @@ export const BookItem = ({
   if (type === "комікс") {
     width = 50;
     height = 320;
-
-    // if (height < 200) {
-    //   height = 200 + width;
-    // }
-    // if (height > 300) {
-    //   height = 300;
-    // }
   } else {
     width = Number(pages) / 9;
     height = Number(pages) / 3;
@@ -60,6 +47,8 @@ export const BookItem = ({
       height = 300;
     }
   }
+
+  console.log(color);
 
   /**
   |============================
